@@ -1,4 +1,4 @@
-package com.backend.summia.models;
+package com.backend.summia.user.models;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -10,41 +10,40 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = User.TABLE_NAME)
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
+    
     private static final String TABLE_NAME = "users";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "username", nullable = false, unique = true)
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "profile_image")
+    @Column(name = "profile_image", nullable = true)
     private String profileImage;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Instant createdAt;
+    @Column(name = "bio", nullable = true)
+    private String bio;
 
-    @Column(name = "updated_at", nullable = false, updatable = true)
-    private Instant updatedAt;
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
 }
